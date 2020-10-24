@@ -2,6 +2,18 @@
 
 public class NativeImageTest {
     public static void main(String[] args) {
-        System.out.println("Hello from the Native world!!");
+
+        String str = "Native Image is awesome";
+        if(args.length > 0){
+            str = args[0];
+        }
+        System.out.println("The Input string is: " + str);
+        String reversed = reverseString(str);
+        System.out.println("The reversed string is: " + reversed);
     }
-}
+
+    public static String reverseString(String str) {
+        if (str.isEmpty())
+            return str;
+        return reverseString(str.substring(1)) + str.charAt(0);
+    }}
