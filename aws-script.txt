@@ -1,0 +1,28 @@
+whoami
+sudo su
+whoami
+
+yum update
+
+mkdir -p tools
+cd tools
+
+wget https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-20.2.0/graalvm-ce-java8-linux-amd64-20.2.0.tar.gz
+
+gzip -d graalvm-ce-java8-linux-amd64-20.2.0.tar.gz
+
+tar -xvf graalvm-ce-java8-linux-amd64-20.2.0.tar
+ 
+export PATH=/home/ec2-user/tools/graalvm-ce-java8-20.2.0/bin:$PATH
+export JAVA_HOME=/home/ec2-user/tools/graalvm-ce-java8-20.2.0/
+
+
+ java -version
+
+gu install -v native-image
+
+
+yum install gcc glibc-devel zlib-devel
+
+yum install git
+

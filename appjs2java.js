@@ -8,18 +8,30 @@ console.log(" calling Java from Nodejs....done");
 
 const http = require("http");
 var HelloPolyglot = Java.type("HelloPolyglot");
+var Employee = Java.type("Employee");
 
 http.createServer(function (request, response) {
     response.writeHead(200, {"Content-Type": "text/html"});
     var now = Date.now();
     var currentNum = Math.floor((Math.random() * 100) + 1);
 
-    log(" calling Java from Nodejs....");
-    //HelloPolyglot.main(["once", "Input from Node ==> Java " + now]);
-    var returnValFromJava = HelloPolyglot.callNode("Input from Node ==> Java " + now, currentNum);
-    log(" calling Java from Nodejs....done ; Return value : " + returnValFromJava);
+    var returnValFromJava = currentNum;
+//    log(" calling Java from Nodejs....");
+//    //HelloPolyglot.main(["once", "Input from Node ==> Java " + now]);
+//    returnValFromJava = HelloPolyglot.callNode("Input from Node ==> Java " + now, currentNum);
+//    log(" calling Java from Nodejs....done ; Return value : " + returnValFromJava);
 
-    response.end("Hello Graal.js! " + now + " ; Random : " + currentNum + " ; Java value : " + returnValFromJava);
+    var mikeJackson = new Employee();
+    mikeJackson.setFirstName("Michael");
+    mikeJackson.setLastName("Jackson");
+    mikeJackson.setAge(currentNum);
+    mikeJackson.setDept("Music");
+
+    log(mikeJackson);
+    HelloPolyglot.updateEmployee(mikeJackson);
+    log(mikeJackson);
+
+    response.end("Hello Graal.js! " + now + " ; Random : " + currentNum + " ; Java value : " + returnValFromJava + " ; Mike's Age: " + mikeJackson.getAge());
 
 }).listen(8000, function()
     {
